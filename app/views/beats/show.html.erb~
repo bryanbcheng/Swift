@@ -12,8 +12,9 @@
 
 <p>
   <b>User:</b>
-  <%= User.find(@beat.user).username %>
+  <%= @beat.user %>
 </p>
 
 
+<%= link_to 'Edit', edit_beat_path(@beat) %> |
 <%= link_to 'Back', beats_path %>
