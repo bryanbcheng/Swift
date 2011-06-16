@@ -1,6 +1,8 @@
 Swift::Application.routes.draw do
   
-  resources :beats
+  resources :users do
+    resources :beats
+  end
 
   get "home/index"
 

@@ -1,0 +1,23 @@
+<h1>Listing beats</h1>
+
+<h2>What are you listening to?</h2>
+<%= render 'form' %>
+
+<table>
+  <tr>
+    <th>Most Recent</th>
+    <th></th>
+  </tr>
+
+<% @beats.each do |beat| %>
+  <tr>
+    <td><%= User.find(beat.user).username %> is listening to <%= beat.song %> by <%= beat.artist %></td>
+  </tr>
+  <tr>
+    <td><%= link_to 'Show', beat %></td>
+    <td><%= link_to 'Hide', beat, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
