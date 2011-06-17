@@ -15,7 +15,7 @@ class BeatsController < ApplicationController
   # GET /beats/1
   # GET /beats/1.xml
   def show
-    @beat = Beat.find(params[:id])
+    @beat = Beat.find(params[:id])    
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,7 +26,7 @@ class BeatsController < ApplicationController
   # POST /beats
   # POST /beats.xml
   def create
-    @user = User.find(1)
+    @user = User.find_by_id(current_user)
     @beat = @user.beats.create(params[:beat])
 
     respond_to do |format|

@@ -8,9 +8,15 @@
 </head>
 <body>
 
-<%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>
+  <%= render 'layouts/header' %>
+  <h1><%= @title %></h1>
 
-<%= yield %>
+  <section>
+    <% flash.each do |key, value| %>
+      <div class="flash <%= key %>"><%= value %></div>
+    <% end %>
+    <%= yield %>
+  </section>
 
 </body>
 </html>

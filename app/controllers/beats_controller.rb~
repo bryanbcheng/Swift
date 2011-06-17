@@ -15,7 +15,7 @@ class BeatsController < ApplicationController
   # GET /beats/1
   # GET /beats/1.xml
   def show
-    @beat = Beat.find(params[:id])
+    @beat = Beat.find(params[:id])    
 
     respond_to do |format|
       format.html # show.html.erb
@@ -31,7 +31,7 @@ class BeatsController < ApplicationController
 
     respond_to do |format|
       if @beat.save
-        format.html { redirect_to(@beat, :notice => 'Beat was successfully created.') }
+        format.html { redirect_to(beats_path, :notice => 'Beat was successfully created.') }
         format.xml  { render :xml => @beat, :status => :created, :location => @beat }
       else
         format.html { render :action => "new" }
