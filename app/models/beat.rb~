@@ -8,12 +8,17 @@ class Beat < ActiveRecord::Base
   private
 
     def link_artist_song
-      @artist = Artist.find_or_create_by_name(artist)
-      
+      @artist = Artist.find_by_name(artist)
+      if @artist.nil?
+        @artist = Artist.new(artist)
+	@artist.save
+      end
       self.artist_id = @artist.id
       
-      @song = Song.find_or_create_by_name(song)
-
+      @song = Song.find_by_name(song)
+      if
+        @song = Song.create(song)
+      end
       self.song_id = @song.id
     end
 end

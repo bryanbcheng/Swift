@@ -10,6 +10,7 @@ class BeatsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @beats }
     end
+
   end
 
   # GET /beats/1
@@ -27,15 +28,22 @@ class BeatsController < ApplicationController
   # POST /beats.xml
   def create
     @user = User.find_by_id(current_user)
-    @beat = @user.beats.create(params[:beat])
-
-    respond_to do |format|
-      if @beat.save
-        format.html { redirect_to(beats_path, :notice => 'Beat was successfully created.') }
-        format.xml  { render :xml => @beat, :status => :created, :location => @beat }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @beat.errors, :status => :unprocessable_entity }
+    
+    if @user.nil?
+      flash[:error] = "Please sign in to share your music"
+      redirect_to signin_path
+    else
+      #@beat = @user.beats.create(params[:beat])
+            
+      
+      respond_to do |format|
+        if @user.beats.create!(params[:beat])
+          format.html { redirect_to(beats_path, :notice => 'Beat was successfully created.') }
+          format.xml  { render :xml => @beat, :status => :created, :location => @beat }
+        else
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @beat.errors, :status => :unprocessable_entity }
+	end     
       end
     end
   end

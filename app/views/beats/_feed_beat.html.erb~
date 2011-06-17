@@ -1,0 +1,7 @@
+<tr>
+  <td><%= link_to User.find(feed_beat.user).username, feed_beat.user %> is listening to <%= link_to Song.find(feed_beat.song_id).name, Song.find(feed_beat.song_id) %> by <%= Artist.find(feed_beat.artist_id).name %></td>
+</tr>
+<tr>
+  <td><%= link_to 'Show', feed_beat %></td>
+  <td><%= link_to 'Hide', feed_beat, :confirm => 'Are you sure?', :method => :delete %></td>
+</tr>

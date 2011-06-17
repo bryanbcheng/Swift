@@ -1,0 +1,19 @@
+class AddArtistAndSongReferences < ActiveRecord::Migration
+  def self.up
+    create_table :artists_songs, :id => false do |t|
+      t.integer :artist_id
+      t.integer :song_id
+    end
+    
+    add_column :beats, :artist, :string
+    add_column :beats, :song, :string
+  end
+
+  def self.down
+    drop_table :artists_songs
+    remove_column :beats, :artist
+    remove_column :beats, :song
+    add_column :beats, :artist, :string
+    add_column :beats, :song, :string
+  end
+end

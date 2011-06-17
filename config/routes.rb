@@ -1,5 +1,8 @@
 Swift::Application.routes.draw do
   
+  resources :artists, :only => [:show]
+  resources :songs, :only => [:show]
+
   get "sessions/new"
 
   resources :users
@@ -58,7 +61,7 @@ Swift::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "home#index"
+  root :to => "beats#index"
 
   # See how all your routes lay out with "rake routes"
 
